@@ -3,48 +3,14 @@ import { Card, CardImg,  CardText, CardBody,
     CardTitle } from 'reactstrap';
 
 class DishDetail extends Component {
-    constructor(props)
+    componentDidMount()
     {
-        super(props);
+        console.log("Component is mounted")
     }
-
-    formatDate(d)
-    {
-      var date = new Date(d);
-
-     if ( isNaN( date.getTime() ) )
-     {
-        return d;
-     }
-     else
-    {
-     
-      var month = new Array();
-      month[0] = "Jan";
-      month[1] = "Feb";
-      month[2] = "Mar";
-      month[3] = "Apr";
-      month[4] = "May";
-      month[5] = "Jun";
-      month[6] = "Jul";
-      month[7] = "Aug";
-      month[8] = "Sept";
-      month[9] = "Oct";
-      month[10] = "Nov";
-      month[11] = "Dec";
-
-      var day = date.getDate();
-     
-      if(day < 10)
-      {
-         day = "0"+day;
-      }
-     
-      return month[date.getMonth()] + " " + day  + ", " +date.getFullYear();
-      }  
-     }
-
-
+    componentDidUpdate(){
+        console.log("Component got updated")
+    }
+ 
     renderComments(comments) {
         if(comments==null)
         return (
@@ -53,6 +19,7 @@ class DishDetail extends Component {
 
        
         return (
+
             <div className='col-12 col-md-5 m-1'>
                 <h4>Comments</h4>
                 <ul className = "list-unstyled">
@@ -99,6 +66,7 @@ class DishDetail extends Component {
 
     render()
     {
+        console.log("Dish Detail render invoked");
         if (this.props.dish == null)
             return(
                 <div></div>
