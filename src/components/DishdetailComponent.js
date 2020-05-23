@@ -17,8 +17,8 @@ import {
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Link } from "react-router-dom";
-// import { Loading } from "./LoadingComponent";
-// import { baseUrl } from "../shared/baseUrl";
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 const required = val => val && val.length;
@@ -138,7 +138,7 @@ function RenderDish({ dish }) {
         }}
       >
         <Card>
-          <CardImg top src={dish.image} alt={dish.name} />
+          <CardImg top src={baseUrl +dish.image} alt={dish.name} />
           <CardBody>
             <CardTitle>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>
@@ -150,7 +150,7 @@ function RenderDish({ dish }) {
 }
 
 function RenderComments({ comments, addComment, dishId }) {
-  if (comments != null) {
+   if (comments != null) {
     return (
       <div className="col-12 col-md-5 m-1">
         <h4>Comments</h4>
@@ -180,7 +180,25 @@ function RenderComments({ comments, addComment, dishId }) {
 }
 
 const DishDetailComponent = props => {
-  if (props.dish != null)
+  if (props.isLoading) {
+    return(
+        <div className="container">
+            <div className="row">            
+                <Loading />
+            </div>
+        </div>
+    );
+}
+else if (props.errMess) {
+    return(
+        <div className="container">
+            <div className="row">            
+                <h4>{props.errMess}</h4>
+            </div>
+        </div>
+    );
+}
+  else if (props.dish != null){
     return (
       <div className="container">
         <div className="row">
@@ -205,6 +223,10 @@ const DishDetailComponent = props => {
         </div>
       </div>
     );
+  }
+  else{
+    return <div></div>
+  }
 };
 
 export default DishDetailComponent;
