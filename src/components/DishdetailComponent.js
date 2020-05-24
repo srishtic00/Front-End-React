@@ -179,7 +179,7 @@ function RenderComments({ comments, postComment, dishId }) {
   } else return <div />;
 }
 
-const DishDetailComponent = props => {
+const DishDetail = props => {
   if (props.isLoading) {
     return(
         <div className="container">
@@ -229,4 +229,4 @@ else if (props.errMess) {
   }
 };
 
-export default DishDetailComponent;
+export default DishDetail;
